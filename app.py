@@ -12,8 +12,8 @@ gerar_usuario_teste()
 
 # 2. CONFIGURAÇÃO DA PÁGINA
 st.set_page_config(layout="wide", page_title="Voyzer Dashboard")
-LOGO_PATH = "visual/Vz_logo1.png"
-apply_global_ui(LOGO_PATH)
+#LOGO_PATH = ""
+#apply_global_ui(LOGO_PATH)
 
 # 3. AUTENTICAÇÃO
 # O login() agora encontrará o users.yaml mesmo que seja o primeiro acesso
@@ -24,7 +24,6 @@ if not status:
 
 # 4. NAVEGAÇÃO (SIDEBAR)
 with st.sidebar:
-    st.logo(LOGO_PATH)
     
     pagina_na_url = st.query_params.get("p", "Home")
     lista_menu = build_menu()
