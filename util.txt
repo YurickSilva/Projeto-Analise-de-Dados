@@ -1,0 +1,23 @@
+venv_bi\Scripts\activate
+
+python -m teste.teste
+python -m utils.hash_senha.py
+python utils/hash_senha.py
+
+streamlit cache clear
+streamlit run app.py
+
+git rm -r --cached pasta # para ignorar a pasta e deletar do github
+git fetch # para atualizar as branches
+git checkout nome-da-Branch-desejada # para trocar de branch
+git checkout -b nome-da-Nova-Branch-desejada
+git branch -> saber qual branch estou
+git status -> ver o que tem para atualizar
+
+
+Atualizar a branch com base na main
+
+git checkout main
+git pull origin main
+git checkout brench_desejada
+git merge main

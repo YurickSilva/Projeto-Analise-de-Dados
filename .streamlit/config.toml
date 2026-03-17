@@ -1,0 +1,11 @@
+[theme]
+# Cor principal: Afeta botões, checkboxes selecionados, sliders e links
+primaryColor = "#FE5000"
+# Cor de fundo principal da área de conteúdo
+backgroundColor = "#ffffff"
+# Cor de fundo da barra lateral (sidebar) e de widgets (inputs, selectboxes)
+secondaryBackgroundColor = "#c1c6c8"
+# Cor do texto principal
+textColor = "#000000"
+# Fonte do sistema: "sans serif", "serif" ou "monospace"
+font = "sans serif"

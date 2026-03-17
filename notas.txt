@@ -1,0 +1,40 @@
+TIflux_tb_Apontamentos
+
+Id_apontamento,Id_ticket,Desc_apontamento,Cliente,Mesa,Tecnico,Solicitado_por,Servico_avulso,Assistencia,Garantia,Duracao,Data_apontamento,Data_encerramento,Valor_apontamento,Latitude,Longitude
+
+Tiflux_tb_Clientes
+
+Id_cliente,Cliente,Razao_social,Situacao,Criado_em,Atualizado_em,Tipo_de_contrato,Contrato,FMH_Help_Desk,FM_On_Site_SSP,FM_Help_Desk,FM_LABIN,FM_Telefonia,FM_On_Site_Ti,FMH_On_site_Ti,FMH_On_site_SSP,Grupo_cliente,Setor,CEP,Cidade,Estado
+
+Tiflux_tb_TIckets
+
+Id_ticket,Id_cliente,Cliente,Desc_ticket,Situacao,Mesa,Responsavel,Solicitado_por,Email_responsavel,Ultima_resposta,Nome_estagio,Prioridade,Catalogo_de_Servicos,Item,Criado_em,Data_1o_apontamento,Fechado_em,Avaliacao,SLA_atendido,Duracao_apontada,Tempo_total_fechamento,Link_chamado
+
+
+Padronizar os commits:
+feat: cria módulo de autenticação
+feat: adiciona login com streamlit
+fix: corrige bug de sessão expirada
+refactor: separa autenticação em módulo próprio
+docs: adiciona instruções no README
+ 
+Single Responsibility Principle (SRP)
+ 
+Evite duplicação (DRY)
+ 
+Faça commits pequenos e frequentes
+ 
+Sempre faça pull antes de trabalhar
+ 
+Trabalhe com branches
+1 criar branch
+2 trabalhar nela
+3 commit
+4 merge na main
+ 
+Versionamento semântico
+1.0.0
+│ │ │
+│ │ └── patch (bug)
+│ └──── minor (feature)
+└────── major (breaking change)
