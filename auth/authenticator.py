@@ -26,42 +26,32 @@ def login():
     config = carregar_config()
     authenticator = criar_authenticator()
 
-    authenticator.login(
-        location="main",
-        key="login_form"  
-    )
+    authenticator.login(location="main", key="login_form")
 
     status = st.session_state.get("authentication_status")
     nome = st.session_state.get("name")
     username = st.session_state.get("username")
 
-    # Estado zumbi
     if status and username not in config["credentials"]["usernames"]:
         authenticator.logout(location="unrendered")
         st.session_state.clear()
         st.rerun()
 
-    # LOGIN INVÁLIDO (somente após tentativa)
     if status is False:
-        st.error("❌ Usuário ou senha inválidos")
+        st.error("Usuário ou senha inválidos")
         logger.warning("Tentativa de login inválida")
         
     if status:
         user_cfg = config["credentials"]["usernames"][username]
-
         role = user_cfg.get("role", "user")
         workspaces = user_cfg.get("workspaces", [])
 
-        # ADMIN IGNORA WORKSPACES
         if role == "admin":
-            workspaces = ["*"]  # wildcard
+            workspaces = ["*"]
 
         st.session_state["role"] = role
         st.session_state["workspaces"] = workspaces
-
-        logger.info(
-            f"Login efetuado | user={username} | role={role} | workspaces={workspaces}"
-        )
+        logger.info(f"Login: {username} | role={role}")
 
     return authenticator, nome, status, username
 

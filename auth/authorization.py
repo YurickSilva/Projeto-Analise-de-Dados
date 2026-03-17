@@ -3,17 +3,12 @@ from utils.logger import setup_logger
 
 logger = setup_logger("authz")
 
-
 def usuario_tem_acesso(workspace: str) -> bool:
-
     status = st.session_state.get("authentication_status")
-
     if not status:
         return False
 
     workspaces = st.session_state.get("workspaces", [])
-
-    # 🔥 ADMIN
     if "*" in workspaces:
         return True
 

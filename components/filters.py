@@ -4,17 +4,8 @@ import pandas as pd
 from datetime import date
 
 def filtro_periodo(coluna_data: str):
-    #st.sidebar.subheader("Filtro de Data")
-
-    data_inicio = st.date_input(
-        "Data início",
-        value=None
-    )
-
-    data_fim = st.date_input(
-        "Data fim",
-        value=None
-    )
+    data_inicio = st.date_input("Data início", value=None)
+    data_fim = st.date_input("Data fim", value=None)
 
     if not data_inicio and not data_fim:
         return None
@@ -25,8 +16,7 @@ def filtro_periodo(coluna_data: str):
         "data_fim": data_fim
     }
 
-def render_filtro_periodo(df, col_data, chave_unica, titulo_expander="📅 Período"):
-    # 1. Preparação das datas base
+def render_filtro_periodo(df, col_data, chave_unica, titulo_expander="Período"):
     datas_validas = pd.to_datetime(df[col_data]).dt.date.dropna()
     min_base = datas_validas.min() if not datas_validas.empty else date.today()
     max_base = datas_validas.max() if not datas_validas.empty else date.today()
@@ -36,22 +26,17 @@ def render_filtro_periodo(df, col_data, chave_unica, titulo_expander="📅 Perí
             st.info("Apenas uma data disponível.")
         return min_base, max_base
 
-    # Chaves para o Session State
     key_slider = f"slider_{chave_unica}"
     key_ini = f"ini_{chave_unica}"
     key_fim = f"fim_{chave_unica}"
 
-    # 2. Funções de Sincronização (Callbacks)
     def sync_slider_to_inputs():
-        # Quando move o slider, atualiza as caixas de data
         st.session_state[key_ini] = st.session_state[key_slider][0]
         st.session_state[key_fim] = st.session_state[key_slider][1]
 
     def sync_inputs_to_slider():
-        # Quando muda a data na caixa, move o slider
         st.session_state[key_slider] = (st.session_state[key_ini], st.session_state[key_fim])
 
-    # 3. Inicialização dos estados se não existirem
     if key_slider not in st.session_state:
         st.session_state[key_slider] = (min_base, max_base)
     if key_ini not in st.session_state:
@@ -59,9 +44,7 @@ def render_filtro_periodo(df, col_data, chave_unica, titulo_expander="📅 Perí
     if key_fim not in st.session_state:
         st.session_state[key_fim] = max_base
 
-    # 4. Interface Visual
     with st.expander(titulo_expander, expanded=False):
-        # O Slider (Mestre)
         st.slider(
             "Arraste para ajustar o período",
             min_value=min_base,
@@ -71,7 +54,6 @@ def render_filtro_periodo(df, col_data, chave_unica, titulo_expander="📅 Perí
             format="DD/MM/YYYY"
         )
 
-        # As Caixas de Seleção (Sincronizadas)
         c1, c2 = st.columns(2)
         with c1:
             st.date_input("Início", key=key_ini, on_change=sync_inputs_to_slider, 

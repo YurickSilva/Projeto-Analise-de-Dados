@@ -1,7 +1,6 @@
 import streamlit_antd_components as sac
 from auth.authorization import usuario_tem_acesso
 
-# Cria o menu que será usado no app.py
 def build_menu():
     menu = [
         sac.MenuItem("Home", icon="house"),
@@ -34,12 +33,6 @@ def build_menu():
                         "TI Global",
                         icon="diagram-3",
                         children=[
-                            sac.MenuItem("Atendimentos"),
-                            sac.MenuItem("Clientes"),
-                            sac.MenuItem("Tempo Decorrido"),
-                            sac.MenuItem("Tickets Abertos"),
-                            sac.MenuItem("Tickets Geral"),
-                            sac.MenuItem("Tickets Técnicos"),
                         ],
                     ),
                 ],
@@ -60,7 +53,6 @@ def build_menu():
     return menu
 
 def get_menu_index(menu_list, target_label):
-    """Retorna o índice plano do item no sac.menu"""
     flat_list = []
     def flatten(items):
         for item in items:

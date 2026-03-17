@@ -1,7 +1,6 @@
 def render():
     import streamlit as st
     from auth.authenticator import exigir_login
-    # 🔐 Garante autenticação
     user = exigir_login()
 
     nome = user["nome"]

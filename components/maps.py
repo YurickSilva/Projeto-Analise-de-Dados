@@ -5,15 +5,12 @@ import streamlit as st
 from metrics.interatividade import set_selecao
 
 def render_mapa_atendimentos(df, id_pagina, response_atendimentos=None, lat_col='Latitude', lon_col='Longitude', permite_clique=True):
-    # 1. Limpeza de coordenadas
     df_mapa = df.dropna(subset=[lat_col, lon_col]).copy()
     df_mapa[lat_col] = pd.to_numeric(df_mapa[lat_col], errors='coerce')
     df_mapa[lon_col] = pd.to_numeric(df_mapa[lon_col], errors='coerce')
     df_mapa = df_mapa.dropna(subset=[lat_col, lon_col])
 
-    # 2. Inteligência de Centro e Zoom
-    selecionados = response_atendimentos.get('selected_rows') if response_atendimentos else None
-    
+    selecionados = response_atendimentos.get('selected_rows') if response_atendimentos else None    
     if selecionados is not None and len(selecionados) > 0:
         df_foco = pd.DataFrame(selecionados)
         map_center = [df_foco[lat_col].mean(), df_foco[lon_col].mean()]
@@ -26,7 +23,6 @@ def render_mapa_atendimentos(df, id_pagina, response_atendimentos=None, lat_col=
 
     m = folium.Map(location=map_center, zoom_start=map_zoom, tiles="cartodbpositron")
 
-    # 3. Renderização dos Pins
     for _, row in df_mapa.iterrows():
         status = str(row.get('Contrato', '')).strip().upper()
         cor_pin = "orange" if status == "SIM" else "red" if status == "RESCINDIDO" else "gray"
@@ -37,9 +33,6 @@ def render_mapa_atendimentos(df, id_pagina, response_atendimentos=None, lat_col=
             icon=folium.Icon(color=cor_pin, icon="info-sign")
         ).add_to(m)
 
-    # 4. A MÁGICA ACONTECE AQUI
-    # Se permite_clique for False, passamos uma lista vazia []. 
-    # Isso transforma o st_folium em um mapa puramente visual (não recarrega a página ao clicar)
     objetos_retorno = ["last_object_clicked"] if permite_clique else []
 
     map_output = st_folium(
@@ -47,10 +40,9 @@ def render_mapa_atendimentos(df, id_pagina, response_atendimentos=None, lat_col=
         key=f"map_{id_pagina}", 
         use_container_width=True, 
         height=500, 
-        returned_objects=objetos_retorno # <- Variável dinâmica
+        returned_objects=objetos_retorno
     )
 
-    # Só processa a lógica de seleção se o clique for permitido e houver dado
     if permite_clique and map_output and map_output.get("last_object_clicked"):
         coords = map_output["last_object_clicked"]
         match = df_mapa[

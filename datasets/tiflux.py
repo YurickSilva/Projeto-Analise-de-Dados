@@ -5,15 +5,10 @@ from utils.logger import setup_logger
 
 logger = setup_logger("datasets")
 
-# --- DOCUMENTAÇÃO ---
-# Adicionamos @st.cache_data em TODAS as funções.
-# Adicionamos a conversão de datas dentro do cache para evitar processamento repetitivo no render().
-
 @st.cache_data(show_spinner="Carregando Tickets...")
 def tickets():  
     logger.info("Solicitado dataset tiflux.tickets")
     df = load_csv(sistema="Tiflux", tabela="Tiflux_tb_Tickets")
-    # Conversão centralizada (format="mixed" lida com diferentes padrões de data no CSV)
     df["Criado_em"] = pd.to_datetime(df["Criado_em"], format="mixed", errors='coerce')
     df["Fechado_em"] = pd.to_datetime(df["Fechado_em"], format="mixed", errors='coerce')
     return df
@@ -28,7 +23,6 @@ def clientes():
 def apontamentos():  
     logger.info("Solicitado dataset tiflux.apontamentos")
     df = load_csv(sistema="Tiflux", tabela="Tiflux_tb_Apontamentos")
-    # Converter data de apontamento aqui também é vital para evitar crashes em gráficos temporais
     if "Data_apontamento" in df.columns:
         df["Data_apontamento"] = pd.to_datetime(df["Data_apontamento"], format="mixed", errors='coerce')
     return df
@@ -36,5 +30,10 @@ def apontamentos():
 @st.cache_data(show_spinner="Carregando Valores Extras...")
 def valores_extras():  
     logger.info("Solicitado dataset tiflux.valores_extras")
-    df = load_csv(sistema="Tiflux", tabela="Tiflux_tb_Valores_extras")
+    try:
+        df = load_csv(sistema="Tiflux", tabela="Tiflux_tb_Valores_extras")
+    except FileNotFoundError:
+        # Caso o mocker ainda não gere essa tabela, retorna um DF vazio para não quebrar o Streamlit
+        logger.warning("Tabela Valores_extras não encontrada. Retornando DataFrame vazio.")
+        return pd.DataFrame()
     return df

@@ -18,7 +18,6 @@ def render_grafico_donut(df, coluna, titulo_hover, hole=0.5):
     st.plotly_chart(fig, use_container_width=True)
 
 def render_grafico_area_acumulada(df, col_eixo_x, col_contagem):
-    
     df_acum = df.groupby(col_eixo_x).size().reset_index(name=col_contagem)
     df_acum['acumulado'] = df_acum[col_contagem].cumsum()
     
@@ -27,24 +26,21 @@ def render_grafico_area_acumulada(df, col_eixo_x, col_contagem):
         x=col_eixo_x, 
         y='acumulado', 
         markers=True, 
-        text='acumulado', # Mantendo sua lógica que funciona
+        text='acumulado',
         color_discrete_sequence=[CORES_PADRAO[0]]
     )
     
-    # Ajuste de exibição dos valores em cima dos pontos
     fig.update_traces(
         textposition='top center', 
         texttemplate='%{text}',    
         hovertext=df_acum['acumulado'],
-        cliponaxis=False # 🟢 IMPORTANTE: Impede que o texto suma se encostar no topo ou laterais
+        cliponaxis=False
     )
     
-    # Cálculo para o zoom (respiro de 20% acima do maior valor)
     max_valor = df_acum['acumulado'].max() if not df_acum.empty else 10
 
     fig.update_layout(
         xaxis_type='category', 
-        # 🟢 Aumentei a margem superior (t=50) para o número não bater no teto
         margin=dict(l=40, r=40, t=50, b=40), 
         showlegend=False, 
         height=350,
@@ -52,13 +48,11 @@ def render_grafico_area_acumulada(df, col_eixo_x, col_contagem):
             nticks=5,           
             dtick=None,         
             rangemode="tozero",
-            # 🟢 Define o zoom inicial para ser maior que o maior valor de dados
             range=[0, max_valor * 1.2] 
         )
     )
     
     fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='rgba(200,200,200,0.2)')
-    
     st.plotly_chart(fig, use_container_width=True)
 
 def render_grafico_barras(df, eixo_x, eixo_y, altura=350, categorias_fixas=None):
@@ -81,15 +75,13 @@ def render_grafico_barras(df, eixo_x, eixo_y, altura=350, categorias_fixas=None)
     st.plotly_chart(fig, use_container_width=True)
 
 def render_grafico_linha(df, eixo_x, eixo_y, altura=300, show_legend=True):
-    # Adicionamos 'text=eixo_y' para o Plotly saber qual valor exibir
     fig = px.line(df, x=eixo_x, y=eixo_y, markers=True, 
-                  text=eixo_y, # 👈 Indica que o texto será o valor de Y
+                  text=eixo_y,
                   color_discrete_sequence=[CORES_PADRAO[0]])
     
-    # Ajustamos a posição do texto para ficar em cima dos pontos
     fig.update_traces(
         textposition="top center",
-        texttemplate='%{text}' # 👈 Garante que o formato seja simples
+        texttemplate='%{text}'
     )
     
     fig.update_xaxes(rangeslider_visible=False, showgrid=False)
@@ -100,7 +92,6 @@ def render_grafico_linha(df, eixo_x, eixo_y, altura=300, show_legend=True):
         yaxis_title=None, 
         height=altura, 
         showlegend=show_legend,
-        # Aumentamos um pouco a margem superior (t) para o número não cortar no teto
         margin=dict(t=30, b=50, l=30, r=20),
         coloraxis_showscale=False,
         paper_bgcolor='rgba(0,0,0,0)',
@@ -171,30 +162,25 @@ def render_grafico_barras_ranking(df, eixo_x, eixo_y, altura=350, categorias_fix
         esqueleto = pd.DataFrame({eixo_x: categorias_fixas})
         df_plot = pd.merge(esqueleto, df_plot, on=eixo_x, how='left').fillna(0)
 
-    # Criamos o gráfico
     fig = px.bar(df_plot, x=eixo_x, y=eixo_y, color_discrete_sequence=[CORES_PADRAO[0]])
     
-    # --- A SOLUÇÃO DE FORÇA BRUTA ---
-    
-    # 1. Limpeza Radical dos Eixos
     fig.update_xaxes(
-        rangeslider_visible=False, # Desativa a barra cinza de zoom
+        rangeslider_visible=False,
         showgrid=False, 
         type='category', 
         tickangle=45,
         categoryorder='total ascending',
-        fixedrange=True # Impede que o usuário dê zoom e "estrague" a visualização
+        fixedrange=True
     )
     
-    fig.update_yaxes(fixedrange=True) # Trava o zoom vertical também
+    fig.update_yaxes(fixedrange=True)
 
-    # 2. Configurações de Layout (Remoção total de margens residuais)
     fig.update_layout(
         xaxis_title=None, 
         yaxis_title=None, 
         height=altura, 
-        showlegend=False, # Forçamos False aqui dentro
-        margin=dict(t=10, b=80, l=40, r=10), # 'b=80' dá espaço para nomes grandes de mesas
+        showlegend=False,
+        margin=dict(t=10, b=80, l=40, r=10),
         coloraxis_showscale=False,
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
