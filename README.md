@@ -94,16 +94,8 @@ Para proteger dados sensíveis e cumprir as diretrizes da **LGPD**, este reposit
 ├── workspaces/                      # Páginas e módulos do dashboard
 │   ├── home.py                      # Página inicial
 │   ├── admin.py                     # Painel administrativo
-│   ├── Controladoria/
-│   │   ├── Receita.py               # Dashboard de receita
-│   │   └── __init__.py
 │   ├── TI_Global/
-│   │   ├── Atendimentos.py          # Métricas de atendimentos
-│   │   ├── Clientes.py              # Análise de clientes
-│   │   ├── Tempo_Decorrido.py       # Tempo de resposta
-│   │   ├── Tickets_Abertos.py       # Tickets em aberto
-│   │   ├── Tickets_Geral.py         # Visão geral de tickets
-│   │   ├── Tickets_Tecnicos.py      # Análise técnica
+│   │   ├── paginas.py               # Páginas do Workspace de Ti_Global
 │   │   └── __init__.py
 │   └── __init__.py
 │
@@ -116,7 +108,6 @@ Para proteger dados sensíveis e cumprir as diretrizes da **LGPD**, este reposit
 ├── config/                          # Configurações
 │   └── users.yaml                   # Credenciais de usuários (gerado automaticamente)
 │
-
 │
 ├── logs/                            # Arquivos de log (gerados automaticamente)
 │

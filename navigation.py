@@ -6,23 +6,6 @@ def build_menu():
         sac.MenuItem("Home", icon="house"),
     ]
 
-    if usuario_tem_acesso("controladoria"):
-        menu.append(
-            sac.MenuItem(
-                "Controladoria", 
-                icon="graph-up",
-                children=[
-                    sac.MenuItem(
-                        "DRE",
-                        icon="graph-down",
-                        children=[
-                            sac.MenuItem("Receita")
-                        ]
-                    )
-                ]
-                )
-        )
-
     if usuario_tem_acesso("ti"):
         menu.append(
             sac.MenuItem(
