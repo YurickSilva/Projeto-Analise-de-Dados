@@ -11,12 +11,24 @@ Tiflux_tb_TIckets
 Id_ticket,Id_cliente,Cliente,Desc_ticket,Situacao,Mesa,Responsavel,Solicitado_por,Email_responsavel,Ultima_resposta,Nome_estagio,Prioridade,Catalogo_de_Servicos,Item,Criado_em,Data_1o_apontamento,Fechado_em,Avaliacao,SLA_atendido,Duracao_apontada,Tempo_total_fechamento,Link_chamado
 
 
-Padronizar os commits:
-feat: cria módulo de autenticação
-feat: adiciona login com streamlit
-fix: corrige bug de sessão expirada
-refactor: separa autenticação em módulo próprio
-docs: adiciona instruções no README
+1. O Padrão "Conventional Commits"
+A prática mais recomendada atualmente é seguir uma estrutura semântica. Isso ajuda não só humanos, mas também ferramentas automáticas que geram logs de mudanças (changelogs).
+
+A estrutura básica é: <tipo>[escopo opcional]: <descrição>
+
+feat: Uma nova funcionalidade.
+
+fix: Correção de um erro.
+
+docs: Mudanças apenas na documentação.
+
+style: Mudanças que não afetam o sentido do código (espaços, formatação, ponto e vírgula).
+
+refactor: Mudança no código que não corrige erro nem adiciona funcionalidade.
+
+test: Adição ou correção de testes.
+
+chore: Atualizações de tarefas de build, pacotes, etc.
  
 Single Responsibility Principle (SRP)
  
