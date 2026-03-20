@@ -2,6 +2,10 @@
 
 Dashboard de análise de dados desenvolvido com Streamlit para monitoramento de métricas comerciais e operacionais, focado em BI (Business Intelligence).
 
+![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
+![Streamlit](https://img.shields.io/badge/streamlit-1.54-FF4B4B.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-orange.svg)
 ---
 
 ## 🚀 Como Visualizar o Projeto (Dados de Demonstração)
