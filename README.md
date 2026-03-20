@@ -5,42 +5,82 @@ Dashboard de análise de dados desenvolvido com Streamlit para monitoramento de 
 ![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Versão](https://img.shields.io/badge/Versão-1.0.0-blue)
-![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.54-FF4B4B?logo=streamlit&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.12+-3776AB?logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.30+-FF4B4B?logo=streamlit&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-2.x-150458?logo=pandas&logoColor=white)
 ![Plotly](https://img.shields.io/badge/Plotly-Visualização-3F4F75?logo=plotly&logoColor=white)
 ![YAML](https://img.shields.io/badge/Config-YAML-CB171E?logo=yaml&logoColor=white)
 ![BCrypt](https://img.shields.io/badge/Segurança-BCrypt-black?logo=security&logoColor=white)
 ![LGPD](https://img.shields.io/badge/Compliance-LGPD-blue)
+
 ---
 
-## 🚀 Como Visualizar o Projeto (Dados de Demonstração)
+## 🚀 Como Rodar o Projeto
 
-Para proteger dados sensíveis, cumprir as diretrizes da **LGPD** e respeitar os limites de armazenamento do GitHub, este repositório **não contém** os bancos de dados reais e nem os arquivos de dados `.csv` de demonstração (que são extensos e excedem o limite de tamanho do GitHub).
+Para proteger dados sensíveis, cumprir as diretrizes da **LGPD** e respeitar os limites de armazenamento do GitHub, este repositório **não contém** os bancos de dados reais e nem os arquivos `.csv`. Os dados de demonstração são gerados automaticamente na primeira execução.
 
-O projeto utiliza um sistema de **Auto-Inicialização** e um script gerador de mock para facilitar o teste por recrutadores e desenvolvedores localmente.
+Existem **duas formas** de rodar o projeto:
 
-1.  **Instale as dependências:**
+### Opção 1 — Executável Automático (Recomendado para qualquer usuário)
+
+> Esta é a forma mais simples. Não precisa ter Python instalado no computador.
+
+1. **Clone o repositório:**
     ```bash
+    git clone https://github.com/YurickSilva/Projeto-Analise-de-Dados.git
+    cd Projeto-Analise-de-Dados
+    ```
+
+2. **Compile o executável** (necessita [Python](https://www.python.org/downloads/) e [PyInstaller](https://pyinstaller.org/)):
+    ```bash
+    pip install pyinstaller
+    python -m PyInstaller Iniciar_Dashboard.spec
+    move dist\Iniciar_Dashboard.exe .\Iniciar_Dashboard.exe
+    ```
+
+3. **Execute o `Iniciar_Dashboard.exe`** que estará na raiz do projeto.
+
+O executável fará **tudo automaticamente**:
+- ✅ **Extrai** os arquivos do projeto para uma pasta chamada `Dashboard_Projeto` ao lado do `.exe`.
+- ✅ **Configura** um Python 3.12 portátil dentro dessa pasta.
+- ✅ **Instala** todas as dependências do `requirements.txt`.
+- ✅ **Gera** a base de dados sintética (Mock) na primeira execução.
+- ✅ **Inicia** o Dashboard no navegador.
+
+> **Requisitos:** Windows 64-bit com acesso à internet (apenas na primeira execução).
+
+### Opção 2 — Execução Manual (Para desenvolvedores)
+
+1. **Clone o repositório:**
+    ```bash
+    git clone https://github.com/YurickSilva/Projeto-Analise-de-Dados.git
+    cd Projeto-Analise-de-Dados
+    ```
+
+2. **Crie um ambiente virtual e instale as dependências:**
+    ```bash
+    python -m venv venv
+    venv\Scripts\activate
     pip install -r requirements.txt
     ```
 
-2.  **Gere os dados fictícios (Mock):**
-    Como os arquivos de dados de demonstração não estão no GitHub devido ao seu tamanho, você precisará gerar a base de dados sintética localmente para que os gráficos e tabelas do dashboard funcionem. Execute o comando abaixo:
+3. **Gere os dados fictícios (Mock):**
     ```bash
     python Mock/gerar_mock.py
     ```
-    > **Atenção:** Este script criará automaticamente a estrutura de pastas `mock/staging/Tiflux/` e vai popular os arquivos `.csv` mockados (Clientes, Tickets, Apontamentos e Valores Extras) necessários para rodar a aplicação. Tenha paciência, pois a geração da base contendo milhares de registros pode levar alguns segundos.
+    > Este script cria automaticamente a estrutura de pastas `Mock/staging/Tiflux/` e popula os arquivos `.csv` mockados (Clientes, Tickets, Apontamentos e Valores Extras). Pode levar alguns segundos.
 
-3.  **Inicie o Dashboard:**
+4. **Inicie o Dashboard:**
     ```bash
     streamlit run app.py
     ```
-    *Nota: No primeiro acesso, o sistema detectará a ausência do arquivo de configuração e criará automaticamente as credenciais de teste abaixo.*
 
 ---
 
 ## 🔑 Login de Teste
+
+Na primeira execução, o sistema cria automaticamente as credenciais de teste:
+
 - **Usuário**: `loginpadrao`
 - **Senha**: `senha1234`
 
@@ -48,12 +88,17 @@ O projeto utiliza um sistema de **Auto-Inicialização** e um script gerador de 
 
 ## 🛠️ Tecnologias
 
-- **Frontend**: Streamlit 1.54
-- **Autenticação**: Streamlit Authenticator (Cookies + Hash BCrypt)
-- **Análise de Dados**: Pandas, NumPy
-- **Visualização**: Plotly, Folium (Mapas)
-- **Componentes UI**: Streamlit Antd Components
-- **Dados Sintéticos**: Faker (Engenharia de dados sintéticos)
+| Tecnologia | Uso |
+|---|---|
+| **Streamlit** | Frontend e interface web |
+| **Streamlit Authenticator** | Autenticação (Cookies + Hash BCrypt) |
+| **Pandas / NumPy** | Análise e manipulação de dados |
+| **Plotly** | Gráficos interativos |
+| **Folium** | Mapas interativos |
+| **AgGrid** | Tabelas com seleção e ordenação |
+| **Faker** | Geração de dados sintéticos (LGPD) |
+| **PyYAML** | Configuração de usuários |
+| **Loguru** | Sistema de logging |
 
 ---
 
@@ -74,70 +119,58 @@ O projeto utiliza um sistema de **Auto-Inicialização** e um script gerador de 
 
 ```text
 ├── app.py                           # Ponto de entrada da aplicação
+├── launcher.py                      # Lançador automático (compila para .exe)
+├── Iniciar_Dashboard.spec           # Receita PyInstaller para gerar o .exe
 ├── navigation.py                    # Construção dinâmica do menu
 ├── router.py                        # Roteamento de páginas
 ├── requirements.txt                 # Dependências do projeto
 │
 ├── auth/                            # Sistema de autenticação e autorização
 │   ├── authenticator.py             # Login, registro e hash de senhas
-│   ├── authorization.py             # Controle de acesso por workspace
-│   └── __init__.py
+│   └── authorization.py             # Controle de acesso por workspace
 │
 ├── components/                      # Componentes reutilizáveis da UI
 │   ├── cards.py                     # Componentes KPI (métricas)
 │   ├── filters.py                   # Filtros (período, multiselect, hierárquico)
 │   ├── graphs.py                    # Gráficos (linhas, barras, donut, área)
 │   ├── maps.py                      # Mapas interativos (Folium)
-│   ├── tables.py                    # Tabelas com seleção (AgGrid)
-│   └── __init__.py
+│   └── tables.py                    # Tabelas com seleção (AgGrid)
 │
 ├── datasets/                        # Loaders e abstrações de dados
 │   ├── loader.py                    # Carregador genérico de CSVs
-│   ├── tiflux.py                    # Loader específico para dados Tiflux
-│   └── __init__.py
+│   └── tiflux.py                    # Loader específico para dados Tiflux
 │
 ├── metrics/                         # Lógica de negócio e KPIs
 │   ├── base.py                      # Cálculos base e utilitários
+│   ├── agg.py                       # Funções de agregação
 │   ├── ti.py                        # Métricas de TI e tickets
-│   ├── interatividade.py            # Gerenciamento de seleções de usuário
-│   └── __init__.py
+│   └── interatividade.py            # Gerenciamento de seleções de usuário
 │
 ├── workspaces/                      # Páginas e módulos do dashboard
 │   ├── home.py                      # Página inicial
 │   ├── admin.py                     # Painel administrativo
-│   ├── TI_Global/
-│   │   ├── paginas.py               # Páginas do Workspace de Ti_Global
-│   │   └── __init__.py
-│   └── __init__.py
+│   └── TI_Global/                   # Workspace de monitoramento TI
+│
+├── services/                        # Serviços de backend
+│   └── users_service.py             # CRUD de usuários
 │
 ├── utils/                           # Utilitários gerais
 │   ├── logger.py                    # Sistema de logging
 │   ├── security.py                  # Funções de segurança
-│   ├── styles.py                    # Estilos CSS globais
-│   └── __init__.py
+│   └── styles.py                    # Estilos CSS globais
 │
-├── config/                          # Configurações
+├── Mock/                            # Ambiente de demonstração
+│   ├── gerar_mock.py                # Gerador de dados fictícios
+│   └── mockuser.py                  # Gerador de credenciais de teste
+│
+├── config/                          # Configurações (não versionado)
 │   └── users.yaml                   # Credenciais de usuários (gerado automaticamente)
 │
+├── visual/                          # Ativos visuais (logos, imagens)
 │
-├── logs/                            # Arquivos de log (gerados automaticamente)
-│
-│
-├── visual/                          # Ativos visuais
-│
-├── Mock/                            # Ambiente de demonstração (opcional)
-│   ├── gerar_mock.py                    # Gerador de dados fictícios
-│   ├── mockuser.py                  # Gerador de credenciais de teste
-│   ├── data/                        # Dados sintéticos(Seguindo LGPD)
-│   └── staging/                     # Dados em estágio
-│       └── Tiflux/                  # Dados Tiflux (CSVs)
-│           ├── Tiflux_tb_Apontamentos_MOCK.csv
-│           ├── Tiflux_tb_Clientes_MOCK.csv
-│           └── Tiflux_tb_Tickets_MOCK.csv
-│
-├── venv_bi/                         # Ambiente virtual Python
-│
-└── README.md                        # Este arquivo
+└── Dashboard_Projeto/               # Pasta gerada pelo .exe (não versionada)
+    ├── .env_dashboard/              # Python portátil
+    └── (Arquivos do projeto extraídos)
 ```
 
 ---
@@ -185,6 +218,38 @@ Módulos de dashboard por departamento:
 - **logger.py**: Sistema de logging centralizado
 - **styles.py**: CSS global (backgrounds, logos, temas)
 - **security.py**: Funções de segurança
+
+---
+
+## 📊 Fluxo de Dados
+
+```
+app.py → login() → navigation.py → router.py → workspace.render()
+                                             ↓
+                                    datasets (loader)
+                                             ↓
+                                        metrics
+                                             ↓
+                                       components
+                                             ↓
+                                           pages
+```
+
+---
+
+## ⚙️ Como Funciona o Executável (`launcher.py`)
+
+O arquivo `launcher.py` é o coração do sistema de auto-inicialização. Quando compilado para `.exe` com PyInstaller, ele:
+
+1. **Detecta o diretório de execução** — Garante que sempre rode na pasta correta.
+2. **Extrai o Projeto** — Copia os arquivos-fonte internos para a pasta `Dashboard_Projeto/` ao lado do `.exe`.
+3. **Baixa o Python 3.12 Embarcável** — Um Python portátil (~15MB) que não precisa de instalação.
+4. **Instala o pip** — Gerenciador de pacotes para o Python portátil.
+5. **Instala as dependências** — Lê o `requirements.txt` e instala tudo automaticamente.
+6. **Gera os dados Mock** — Se for a primeira execução, gera a base sintética.
+7. **Inicia o Streamlit** — Abre o dashboard no navegador padrão.
+
+> **Controle de versão inteligente:** O `launcher.py` salva um arquivo `.python_version` dentro da pasta `.env_dashboard`. Se a versão configurada mudar, ele recria o ambiente automaticamente.
 
 ---
 
@@ -237,28 +302,12 @@ credentials:
 
 ---
 
-## 📊 Fluxo de Dados
-
-```
-app.py → login() → navigation.py → router.py → workspace.render()
-                                             ↓
-                                    datasets (loader)
-                                             ↓
-                                        metrics
-                                             ↓
-                                       components
-                                             ↓
-                                           pages
-```
-
----
-
 ## 📋 Checklist de Primeiro Acesso
 
-- [ ] Instalar dependências: `pip install -r requirements.txt`
-- [ ] Gerar dados fictícios localmente (Obrigatório!): `python Mock/gerar_mock.py`
-- [ ] Executar app: `streamlit run app.py`
-- [ ] Fazer login com credenciais de teste
+- [ ] Clonar o repositório
+- [ ] Compilar o `.exe` ou criar ambiente virtual manualmente
+- [ ] Executar o sistema (`.exe` ou `streamlit run app.py`)
+- [ ] Fazer login com credenciais de teste (`loginpadrao` / `senha1234`)
 - [ ] Explorar workspaces disponíveis
 
 ---
@@ -268,10 +317,10 @@ app.py → login() → navigation.py → router.py → workspace.render()
 | Arquivo | Descrição |
 |---------|-----------|
 | `requirements.txt` | Dependências do projeto |
-| `config/users.yaml` | Credenciais (não é postado no GitHub) |
+| `launcher.py` | Lançador automático do dashboard |
+| `Iniciar_Dashboard.spec` | Receita para compilar o `.exe` |
+| `config/users.yaml` | Credenciais (não versionado no GitHub) |
 | `.gitignore` | Protege arquivos sensíveis |
-| `mock/staging/` | Dados de entrada do projeto |
-| `logs/` | Registros de execução |
 
 ---
 
