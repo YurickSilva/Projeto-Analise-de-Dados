@@ -14,7 +14,7 @@ def load_csv(sistema: str, tabela: str) -> pd.DataFrame:
     # 1. Tenta carregar da pasta Mock (para o GitHub/Testes)
     # 2. Se não existir, tenta carregar da pasta data/staging real
     
-    mock_path = PROJECT_ROOT / "Mock" / "data" / "staging" / sistema / f"{tabela}.csv"
+    mock_path = PROJECT_ROOT / "Mock" / "mock" / "staging" / sistema / f"{tabela}.csv"
     real_path = PROJECT_ROOT / "data" / "staging" / sistema / f"{tabela}.csv"
 
     if mock_path.exists():
@@ -31,7 +31,6 @@ def load_csv(sistema: str, tabela: str) -> pd.DataFrame:
         logger.error(f"Arquivo não encontrado em nenhum dos caminhos: {path}")
         raise FileNotFoundError(f"CSV não encontrado: {tabela}.csv")
 
-    # Adicionamos low_memory=False para evitar warnings em colunas mistas
     df = pd.read_csv(path, low_memory=False)
 
     duracao = round(time.time() - inicio, 3)
