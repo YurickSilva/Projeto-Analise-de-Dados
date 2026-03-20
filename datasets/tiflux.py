@@ -7,6 +7,7 @@ logger = setup_logger("datasets")
 
 @st.cache_data(show_spinner="Carregando Tickets...")
 def tickets():  
+    # Force cache reload after mock update
     logger.info("Solicitado dataset tiflux.tickets")
     df = load_csv(sistema="Tiflux", tabela="Tiflux_tb_Tickets_MOCK")
     df["Criado_em"] = pd.to_datetime(df["Criado_em"], format="mixed", errors='coerce')
