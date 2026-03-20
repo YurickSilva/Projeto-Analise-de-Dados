@@ -57,7 +57,6 @@ Para proteger dados sensíveis e cumprir as diretrizes da **LGPD**, este reposit
 
 ### 📊 Workspaces Disponíveis
 - **Home**: Visão geral e boas-vindas.
-- **Controladoria**: Dashboards financeiros e análise de receita.
 - **TI Global**: Monitoramento completo de atendimentos via integração **Tiflux**, incluindo métricas de tickets, performance de técnicos e SLA.
 
 ---
@@ -90,7 +89,6 @@ Para proteger dados sensíveis e cumprir as diretrizes da **LGPD**, este reposit
 │
 ├── metrics/                         # Lógica de negócio e KPIs
 │   ├── base.py                      # Cálculos base e utilitários
-│   ├── controladoria.py             # Métricas financeiras
 │   ├── ti.py                        # Métricas de TI e tickets
 │   ├── interatividade.py            # Gerenciamento de seleções de usuário
 │   └── __init__.py
@@ -119,14 +117,14 @@ Para proteger dados sensíveis e cumprir as diretrizes da **LGPD**, este reposit
 ├── visual/                          # Ativos visuais
 │
 ├── Mock/                            # Ambiente de demonstração (opcional)
-│   ├── mocker.py                    # Gerador de dados fictícios
+│   ├── gerar_mock.py                    # Gerador de dados fictícios
 │   ├── mockuser.py                  # Gerador de credenciais de teste
 │   ├── data/                        # Dados sintéticos(Seguindo LGPD)
 │   └── staging/                     # Dados em estágio
 │       └── Tiflux/                  # Dados Tiflux (CSVs)
-│           ├── Tiflux_tb_Apontamentos.csv
-│           ├── Tiflux_tb_Clientes.csv
-│           └── Tiflux_tb_Tickets.csv
+│           ├── Tiflux_tb_Apontamentos_MOCK.csv
+│           ├── Tiflux_tb_Clientes_MOCK.csv
+│           └── Tiflux_tb_Tickets_MOCK.csv
 │
 ├── venv_bi/                         # Ambiente virtual Python
 │
@@ -157,7 +155,6 @@ Camada de abstração para carregamento de dados:
 
 - **loader.py**: Carregador genérico de CSVs
 - **tiflux.py**: Processamento específico de dados Tiflux
-- **company.py**: Dados de empresa integrados
 
 ### Metrics (`metrics/`)
 
@@ -165,7 +162,6 @@ Lógica de cálculo de métricas:
 
 - **base.py**: Funções base de cálculo
 - **ti.py**: KPIs de TI (tickets, SLA, atendimentos)
-- **controladoria.py**: Métricas financeiras e receita
 - **interatividade.py**: Gerencia seleções do usuário durante navegação
 
 ### Workspaces (`workspaces/`)
@@ -173,12 +169,7 @@ Lógica de cálculo de métricas:
 Módulos de dashboard por departamento:
 
 - **Home**: Boas-vindas e resumo de acesso
-- **Controladoria/Receita**: Análise financeira
-- **TI_Global**: Múltiplos dashboards de TI
-  - Atendimentos (com mapa)
-  - Clientes (análise de base)
-  - Tempo de resposta
-  - Tickets (várias visualizações)
+- **TI_Global**: Dashboards de TI
 
 ### Utils (`utils/`)
 
@@ -256,7 +247,7 @@ app.py → login() → navigation.py → router.py → workspace.render()
 ## 📋 Checklist de Primeiro Acesso
 
 - [ ] Instalar dependências: `pip install -r requirements.txt`
-- [ ] (Opcional) Gerar dados fictícios: `python Mock/mocker.py`
+- [ ] (Opcional) Gerar dados fictícios: `python Mock/gerar_mock.py`
 - [ ] Executar app: `streamlit run app.py`
 - [ ] Fazer login com credenciais de teste
 - [ ] Explorar workspaces disponíveis
@@ -270,7 +261,7 @@ app.py → login() → navigation.py → router.py → workspace.render()
 | `requirements.txt` | Dependências do projeto |
 | `config/users.yaml` | Credenciais (não é postado no GitHub) |
 | `.gitignore` | Protege arquivos sensíveis |
-| `data/staging/` | Dados de entrada do projeto |
+| `mock/staging/` | Dados de entrada do projeto |
 | `logs/` | Registros de execução |
 
 ---
