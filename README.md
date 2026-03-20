@@ -2,10 +2,18 @@
 
 Dashboard de análise de dados desenvolvido com Streamlit para monitoramento de métricas comerciais e operacionais, focado em BI (Business Intelligence).
 
-![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
-![Streamlit](https://img.shields.io/badge/streamlit-1.54-FF4B4B.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-orange.svg)
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Versão](https://img.shields.io/badge/Versão-1.0.0-blue)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.54-FF4B4B?logo=streamlit&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-2.x-150458?logo=pandas&logoColor=white)
+![Plotly](https://img.shields.io/badge/Plotly-Visualização-3F4F75?logo=plotly&logoColor=white)
+![YAML](https://img.shields.io/badge/Config-YAML-CB171E?logo=yaml&logoColor=white)
+![BCrypt](https://img.shields.io/badge/Segurança-BCrypt-black?logo=security&logoColor=white)
+![LGPD](https://img.shields.io/badge/Compliance-LGPD-blue)
+![Tiflux](https://img.shields.io/badge/Integração-Tiflux-0052FF)
+![Business Intelligence](https://img.shields.io/badge/Área-BI%20%26%20Controladoria-blueviolet)
 ---
 
 ## 🚀 Como Visualizar o Projeto (Dados de Demonstração)
