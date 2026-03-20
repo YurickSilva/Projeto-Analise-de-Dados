@@ -16,18 +16,21 @@ Dashboard de análise de dados desenvolvido com Streamlit para monitoramento de 
 
 ## 🚀 Como Visualizar o Projeto (Dados de Demonstração)
 
-Para proteger dados sensíveis e cumprir as diretrizes da **LGPD**, este repositório não contém os bancos de dados reais. O projeto utiliza um sistema de **Auto-Inicialização** para facilitar o teste por recrutadores e desenvolvedores.
+Para proteger dados sensíveis, cumprir as diretrizes da **LGPD** e respeitar os limites de armazenamento do GitHub, este repositório **não contém** os bancos de dados reais e nem os arquivos de dados `.csv` de demonstração (que são extensos e excedem o limite de tamanho do GitHub).
+
+O projeto utiliza um sistema de **Auto-Inicialização** e um script gerador de mock para facilitar o teste por recrutadores e desenvolvedores localmente.
 
 1.  **Instale as dependências:**
     ```bash
     pip install -r requirements.txt
     ```
 
-2.  **Gere os dados fictícios:**
-    Para que os gráficos e tabelas funcionem, você precisa gerar a base de dados sintética:
+2.  **Gere os dados fictícios (Mock):**
+    Como os arquivos de dados de demonstração não estão no GitHub devido ao seu tamanho, você precisará gerar a base de dados sintética localmente para que os gráficos e tabelas do dashboard funcionem. Execute o comando abaixo:
     ```bash
     python Mock/gerar_mock.py
     ```
+    > **Atenção:** Este script criará automaticamente a estrutura de pastas `mock/staging/Tiflux/` e vai popular os arquivos `.csv` mockados (Clientes, Tickets, Apontamentos e Valores Extras) necessários para rodar a aplicação. Tenha paciência, pois a geração da base contendo milhares de registros pode levar alguns segundos.
 
 3.  **Inicie o Dashboard:**
     ```bash
@@ -253,7 +256,7 @@ app.py → login() → navigation.py → router.py → workspace.render()
 ## 📋 Checklist de Primeiro Acesso
 
 - [ ] Instalar dependências: `pip install -r requirements.txt`
-- [ ] (Opcional) Gerar dados fictícios: `python Mock/gerar_mock.py`
+- [ ] Gerar dados fictícios localmente (Obrigatório!): `python Mock/gerar_mock.py`
 - [ ] Executar app: `streamlit run app.py`
 - [ ] Fazer login com credenciais de teste
 - [ ] Explorar workspaces disponíveis

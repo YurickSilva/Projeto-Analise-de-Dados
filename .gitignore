@@ -3,6 +3,25 @@ venv_bi/
 data/
 *.csv
 
+# === Projeto Dashboard ===
+# Ambiente Python portatil (criado automaticamente pelo .exe)
+.env_dashboard/
+
+# Executavel compilado (nao commitar, cada usuario compila o seu)
+*.exe
+
+# Logs locais
+logs/
+
+# Notas pessoais do desenvolvedor
+notas.txt
+util.txt
+
+# Pasta temporaria de testes
+temp/
+teste/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -36,7 +55,6 @@ MANIFEST
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
-*.spec
 
 # Installer logs
 pip-log.txt
