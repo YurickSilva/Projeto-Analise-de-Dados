@@ -16,7 +16,7 @@ Para proteger dados sensíveis e cumprir as diretrizes da **LGPD**, este reposit
 2.  **Gere os dados fictícios:**
     Para que os gráficos e tabelas funcionem, você precisa gerar a base de dados sintética:
     ```bash
-    python Mock/mocker.py
+    python Mock/gerar_mock.py
     ```
 
 3.  **Inicie o Dashboard:**
