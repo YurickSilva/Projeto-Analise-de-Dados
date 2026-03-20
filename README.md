@@ -12,8 +12,6 @@ Dashboard de análise de dados desenvolvido com Streamlit para monitoramento de 
 ![YAML](https://img.shields.io/badge/Config-YAML-CB171E?logo=yaml&logoColor=white)
 ![BCrypt](https://img.shields.io/badge/Segurança-BCrypt-black?logo=security&logoColor=white)
 ![LGPD](https://img.shields.io/badge/Compliance-LGPD-blue)
-![Tiflux](https://img.shields.io/badge/Integração-Tiflux-0052FF)
-![Business Intelligence](https://img.shields.io/badge/Área-BI%20%26%20Controladoria-blueviolet)
 ---
 
 ## 🚀 Como Visualizar o Projeto (Dados de Demonstração)
