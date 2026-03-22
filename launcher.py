@@ -131,7 +131,7 @@ def main():
             subprocess.run([PYTHON_EXE, "-m", "pip", "install", "-r", req_file], check=True)
 
         # 3. Gerar Mocks se necessário
-        mock_file = os.path.join(PROJECT_DIR, "Mock", "staging", "Tiflux", "Tiflux_tb_Clientes_MOCK.csv")
+        mock_file = os.path.join(PROJECT_DIR, "Mock", "mock", "staging", "Tiflux", "Tiflux_tb_Clientes_MOCK.csv")
         if not os.path.exists(mock_file):
             print_msg("Primeira execucao: Gerando base de dados sintetica...")
             mock_script = os.path.join(PROJECT_DIR, "Mock", "gerar_mock.py")

@@ -215,8 +215,8 @@ def gerar_mock_final(n_clientes=400, n_tickets=300000, valor_hora=150.0):
 # --- EXECUÇÃO E SALVAMENTO NO DIRETÓRIO ESPECÍFICO ---
 df_c, df_t, df_a, df_e = gerar_mock_final()
 
-# Define o caminho relativo
-pasta_destino = os.path.join("mock", "staging", "Tiflux")
+# Define o caminho relativo (dentro da pasta Mock do projeto)
+pasta_destino = os.path.join("Mock", "mock", "staging", "Tiflux")
 
 # Cria a pasta se ela não existir
 if not os.path.exists(pasta_destino):
