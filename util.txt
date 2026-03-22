@@ -1,5 +1,8 @@
 venv_bi\Scripts\activate
 
+gerar .exe
+python -m PyInstaller Iniciar_Dashboard.spec
+
 python -m teste.teste
 python -m utils.hash_senha.py
 python utils/hash_senha.py
